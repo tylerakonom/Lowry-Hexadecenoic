@@ -13,7 +13,7 @@ All files were uploaded to the summit module as part of the research computing p
 
 	/projects/lowryc/hex_acid/
 
-Finally, [this](https://github.com/tylerakonom/Lowry-Hexadecenoic/filenames.txt) document was provided by David Smith to make sense of the naming scheme for each ".fq.gz" file.
+Finally, [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/filenames.txt) document was provided by David Smith to make sense of the naming scheme for each ".fq.gz" file.
 
 Software will be called from the container located in the summit module at:
 
