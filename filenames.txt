@@ -1,0 +1,11 @@
+The relevant files follow the naming convention:
+
+{DATE}_{M[N]}_{TREATMENT}_{READ}.fq.gz
+
+Where:
+
+DATE denotes the experiment design. “051915” was the experiment where macrophages were exposed to 10(Z)-hexadecenoic acid for 6h prior to LPS stimulation. “080515” was the experiment where the macrophages were exposed to 10(Z)-hexadecenoic acid for 1h—this was the experiment data we published.
+M[N] denotes the treatment replicate.
+TREATMENT denotes whether the macrophage replicate was pre-exposed to 10(Z)-hexadecenoic acid (“16H”) or the growth media (“DMEM”).
+READ denotes which end of the fragment the read pair was generated. “fp” are the forward, paired reads (first sequenced). “rp” are the reverse, paired reads (second sequenced). “fup” are the forward, unpaired reads, meaning, these are reads for which the reverse read could not (for whatever reason) be reliably associated with the same fragment. “rup” is the opposite of “fup”. “rup” and “fup” are not useful and should really only be used for troubleshooting or QC analysis.
+All the other files (e.g. “DRR…”, “lane1…”, etc.) are technical artifacts or procedural files generated from the sequencer or trimming program (trimmomatic…I think…).
