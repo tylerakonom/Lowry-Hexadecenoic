@@ -9,7 +9,7 @@
 
 Before proceeding an important note, all data located in the Lowry project directory should be maintained as READ ONLY, and you should not edit file structure or data. All outputs should be directed to **your scratch space**!
 
-All files were uploaded to the summit module as part of the research computing program at CU Boulder. Basic tutorials on how to work with the RC computing environment and FAQs are located [here](https://curc.readthedocs.io/en/latest/faq.html). All files were uploaded to the lowryc project folder into the directory "hex_acid". The file path is as follows:
+All files were uploaded to the summit module as part of the research computing program at CU Boulder. Basic tutorials on how to work with the RC computing environment and FAQs are located [**here**](https://curc.readthedocs.io/en/latest/faq.html). All files were uploaded to the lowryc project folder into the directory "hex_acid". The file path is as follows:
 
 	/projects/lowryc/hex_acid/
 
@@ -56,7 +56,7 @@ R should be called in the anaconda environment on summit:
 	$ conda activate r361
 	$ R
 
-Running Rsubread can be done with [this](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/Rsubread.R) as an example script. The final counts text file will be used for the remainder of the analysis.
+Running Rsubread can be done with [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/Rsubread.R) as an example script. The final counts text file will be used for the remainder of the analysis.
 
 From this point on, the processing will be performed on a local machine. The command to copy a file from the summit cluster looks like this:
 
