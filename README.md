@@ -19,7 +19,7 @@ Software will be called from the container located in the summit module at:
 
 	/projects/lowryc/software/scripts
 
-RC requires the use of a header for jobs to queue. An example header is as follows:
+We are going to require a blank job script to work with RC. An example test job can be found [**here**]()
 
 	#!/bin/bash #The type of script being run
 	#SBATCH -J trimReads #Name of the script being run
