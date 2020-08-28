@@ -19,14 +19,11 @@ Software will be called from the container located in the summit module at:
 
 	/projects/lowryc/software/scripts
 
-We are going to require a blank job script to work with RC. An example test job can be found [**here**]()
+We are going to require a blank job script to work with RC. An example test job can be found [**here**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/testjob.sh). The header of the script will need to be changed to reflect what the expected necessities of the job are. Line 27 will need to be edited to run the command you're out to run. The example script is set up to run the help menu for hisat2.
 
-	#!/bin/bash #The type of script being run
-	#SBATCH -J trimReads #Name of the script being run
-	#SBATCH -n 6 # Number of processing cores requested to complete the job
-	#SBATCH -N 1 # Number of nodes requested
-	#SBATCH -t 10:00:00 # Run time in HH:MM:SS 
-	#SBATCH --partition=shas
+	singularity exec /projects/lowryc/software/containers/rnaseq2.sif hisat2 --help
+
+Everything in this command before "hisat2" is setting up for the command, hisat2 is the command being run, and --help is the argument.
 
 Jobs are run using the following command:
 
