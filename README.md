@@ -4,6 +4,7 @@
 
 ## Background
 
+We are setting out to analyze data previously collected by David Smith for Dr. Lowry. Our analysis will focus on the data derived from macrophages treated for 6 hours with vehicle or 10(Z)-hexadecenoic acid, but all data from the 1 hour time point will be processed as well for eventual comparative analysis.
 
 ## Pre-processing
 
@@ -31,7 +32,7 @@ Jobs are run using the following command:
 
 #### Trimming Reads
 
-Trimming of raw reads will be performed using [trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic).
+Trimming of raw reads will be performed using [trimmomatic (v0.39)](http://www.usadellab.org/cms/?page=trimmomatic), whose manual can be found [**here**](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf). 
 
 #### Post Trim Quality Control
 
