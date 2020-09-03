@@ -1,9 +1,18 @@
 #!/bin/bash
-#SBATCH -J FastQC
-#SBATCH -n 4 #number of cores being used
-#SBATCH -N 1 #ensure that all cores are on the same node
-#SBATCH -t 1-00:00 #how long we think it will take
-#SBATCH --partition=shas
+
+# Written by: tyak9569
+# Date: 20200903
+# Purpose: fastQC script for tyak9569
+
+#SBATCH --partition=shas     # Summit partition
+#SBATCH --qos=normal                 # Summit qos
+#SBATCH --time=002:00:00           # Max wall time in HHH:MM:SS
+#SBATCH --ntasks=4           # Number of tasks per job
+#SBATCH --nodes=1             # Number of nodes per job
+#SBATCH --job-name=fastQC       # Job submission name
+#SBATCH --output=o.fastQC.%j.out   # Output file name with Job ID
+#SBATCH --mail-type=END            # Email user when job finishes
+#SBATCH --mail-user=tyak9569@colorado.edu # Email address of user
 
 # purge all existing modules
 module purge
