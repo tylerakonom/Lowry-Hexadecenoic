@@ -26,10 +26,6 @@ export SINGULARITY_CACHEDIR=/scratch/summit/$USER
 mkdir /scratch/summit/tyak9569/hex_acid
 mkdir /scratch/summit/tyak9569/hex_acid/trimmedReads
 
-# load the container
-
-export PATH=$PATH:/projects/lowryc/software/scripts
-
 # Run your program
 FILES1=/projects/lowryc/hex_acid/*fp*.fq.gz  # Designates the forward, paired-end reads as "f"
 for f in $FILES1
@@ -39,5 +35,5 @@ do
     f_trimmed=${f_trimmed//\/projects\/lowryc\/hex_acid/\/scratch\/summit\/tyak9569\/hex_acid\/trimmedReads}
     f2_trimmed=${f2//.fq.gz/_trimmed.r.fq.gz}
 	f2_trimmed=${f2_trimmed//\/projects\/lowryc\/hex_acid/\/scratch\/summit\/tyak9569\/hex_acid\/trimmedReads}
-	rnaseq trimmomatic PE -threads 24 -trimlog trimmed.txt -basein $f_trimmed -baseout ILLUMINACLIP MINLEN:20
+	singularity run /projects/lowryc/software/containers/rnaseq.sif trimmomatic PE -threads 24 -trimlog trimmed.txt -basein $f_trimmed -baseout ILLUMINACLIP MINLEN:20
 done
