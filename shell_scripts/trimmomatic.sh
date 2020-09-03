@@ -26,9 +26,9 @@ export SINGULARITY_CACHEDIR=/scratch/summit/$USER
 mkdir /scratch/summit/tyak9569/hex_acid
 mkdir /scratch/summit/tyak9569/hex_acid/trimmedReads
 
-# Activate the conda environment (will be replaced with sw container once it's set up)
-source /curc/sw/anaconda/default/
-conda activate rnaseq2
+# load the container
+
+export PATH=$PATH:/projects/lowryc/software/scripts
 
 # Run your program
 FILES1=/projects/lowryc/hex_acid/*fp*.fq.gz  # Designates the forward, paired-end reads as "f"
@@ -39,5 +39,5 @@ do
     f_trimmed=${f_trimmed//\/projects\/lowryc\/hex_acid/\/scratch\/summit\/tyak9569\/hex_acid\/trimmedReads}
     f2_trimmed=${f2//.fq.gz/_trimmed.r.fq.gz}
 	f2_trimmed=${f2_trimmed//\/projects\/lowryc\/hex_acid/\/scratch\/summit\/tyak9569\/hex_acid\/trimmedReads}
-	trimmomatic PE -threads 24 -trimlog trimmed.txt -basein $f_trimmed -baseout ILLUMINACLIP MINLEN:20
+	rnaseq trimmomatic PE -threads 24 -trimlog trimmed.txt -basein $f_trimmed -baseout ILLUMINACLIP MINLEN:20
 done
