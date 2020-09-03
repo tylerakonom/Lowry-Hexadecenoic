@@ -35,5 +35,6 @@ do
     f_trimmed=${f_trimmed//\/projects\/lowryc\/hex_acid/\/scratch\/summit\/tyak9569\/hex_acid\/trimmedReads}
     f2_trimmed=${f2//.fq.gz/_trimmed.r.fq.gz}
 	f2_trimmed=${f2_trimmed//\/projects\/lowryc\/hex_acid/\/scratch\/summit\/tyak9569\/hex_acid\/trimmedReads}
-	singularity run /projects/lowryc/software/containers/rnaseq.sif trimmomatic PE -threads 24 -trimlog trimmed.txt -basein $f_trimmed -baseout ILLUMINACLIP MINLEN:20
 done
+
+singularity run /projects/lowryc/software/containers/rnaseq.sif trimmomatic PE -threads 24 -trimlog trimmed.txt -basein $f_trimmed -baseout ILLUMINACLIP MINLEN:20
