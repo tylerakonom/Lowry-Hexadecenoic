@@ -23,6 +23,6 @@ module load singularity/3.3.0
 export SINGULARITY_TMPDIR=/scratch/summit/$USER
 export SINGULARITY_CACHEDIR=/scratch/summit/$USER
 
-# Run your program
-singularity exec /projects/lowryc/software/containers/rnaseq2.sif hisat2 --help
+# Run your program (this line currently runs "help" for Hisat2)
+singularity run /projects/lowryc/software/containers/rnaseq.sif hisat2 --help
 
