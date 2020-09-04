@@ -7,7 +7,7 @@
 #SBATCH --partition=shas     # Summit partition
 #SBATCH --qos=normal                 # Summit qos
 #SBATCH --time=002:00:00           # Max wall time in HHH:MM:SS
-#SBATCH --ntasks=4           # Number of tasks per job
+#SBATCH --n 24           # Number of tasks per job
 #SBATCH --nodes=1             # Number of nodes per job
 #SBATCH --job-name=fastQC       # Job submission name
 #SBATCH --output=o.fastQC.%j.out   # Output file name with Job ID
@@ -27,5 +27,5 @@ export SINGULARITY_CACHEDIR=/scratch/summit/$USER
 FILES1=/projects/lowryc/hex_acid/*.fq.gz
 for f in $FILES1
 do
-  	singularity run /projects/lowryc/software/containers/rnaseq.sif fastqc -t 4 -o /scratch/summit/tyak9569/hex_acid/fastqc/raw/ -d /scratch/summit/tyak9569/hex_acid/fastqc/raw $f
+  	singularity run /projects/lowryc/software/containers/rnaseq.sif fastqc -t 24 -o /scratch/summit/tyak9569/hex_acid/fastqc/raw/ -d /scratch/summit/tyak9569/hex_acid/fastqc/raw $f
 done
