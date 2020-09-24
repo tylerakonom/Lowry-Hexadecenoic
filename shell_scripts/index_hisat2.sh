@@ -1,16 +1,15 @@
 #!/bin/bash
 
 # Written by: tyak9569
-# Date: 20200903
-# Purpose: fastQC script for tyak9569
+# Purpose: Hisat2-Index script for tyak9569
 
 #SBATCH --partition=shas     # Summit partition
 #SBATCH --qos=normal                 # Summit qos
-#SBATCH --time=002:00:00           # Max wall time in HHH:MM:SS
-#SBATCH --ntasks 24           # Number of tasks per job
+#SBATCH --time=00:40:00           # Max wall time in HHH:MM:SS
+#SBATCH --ntasks=16           # Number of tasks per job
 #SBATCH --nodes=1             # Number of nodes per job
-#SBATCH --job-name=fastQC       # Job submission name
-#SBATCH --output=o.fastQC.%j.out   # Output file name with Job ID
+#SBATCH --job-name=Hisat2-Index      # Job submission name
+#SBATCH --output=o.Hisat2-Index.%j.out   # Output file name with Job ID
 #SBATCH --mail-type=END            # Email user when job finishes
 #SBATCH --mail-user=tyak9569@colorado.edu # Email address of user
 
@@ -22,10 +21,5 @@ module load singularity/3.3.0
 export SINGULARITY_TMPDIR=/scratch/summit/$USER
 export SINGULARITY_CACHEDIR=/scratch/summit/$USER
 
-# run FastQC for each file
-
-FILES1=/projects/lowryc/hex_acid/*.fq.gz
-for f in $FILES1
-do
-  	singularity run /projects/lowryc/software/containers/rnaseq.sif fastqc -t 24 -o /scratch/summit/tyak9569/hex_acid/fastqc/raw/ -d /scratch/summit/tyak9569/hex_acid/fastqc/raw $f
-done
+# Build Hisat2 Index
+singularity run /projects/lowryc/software/containers/rnaseq.sif hisat2-build -p 16 /projects/lowryc/hex_acid_working/genome/Mus_musculus.GRCm38.dna.primary_assembly.fa /projects/lowryc/hex_acid_working/genome/GRCm38
