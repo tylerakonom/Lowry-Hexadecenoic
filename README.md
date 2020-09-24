@@ -58,7 +58,11 @@ Trimming of raw reads was performed previously by David Smith using [trimmomatic
 
 #### Aligning to the Genome
 
-Trimmed samples were aligned to the Ensembl ([GRCm38](ftp://ftp.ensembl.org/pub/release-101/gtf/mus_musculus/)) primary mouse genome using [HISAT2 (v2.1.0)](https://ccb.jhu.edu/software/hisat2/manual.shtml) and . Post align QC will be done with [Preseq](http://smithlabresearch.org/software/preseq/) and [Rseqc](http://rseqc.sourceforge.net/).
+Trimmed samples were aligned to the Ensembl ([GRCm38](ftp://ftp.ensembl.org/pub/release-101/gtf/mus_musculus/)) primary mouse genome, and indexes were created using [HISAT2 (v2.1.0)](https://ccb.jhu.edu/software/hisat2/manual.shtml) and [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/index_hisat2.sh) script. Indexes were saved at the following directory for future use:
+
+	$ /projects/lowryc/hex_acid_working/genome/
+
+Alignment was performed with [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/hisat2.sh) script. Post align QC will be done with [Preseq](http://smithlabresearch.org/software/preseq/) and [Rseqc](http://rseqc.sourceforge.net/).
 
 #### Generating Raw Read Counts
 
