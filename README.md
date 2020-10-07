@@ -14,7 +14,9 @@ Before proceeding an important note, all data located in the Lowry project direc
 
 All files were uploaded to the summit module as part of the research computing program at CU Boulder. Basic tutorials on how to work with the RC computing environment and FAQs are located [**here**](https://curc.readthedocs.io/en/latest/faq.html). All files were uploaded to the lowryc project folder into the directory "hex_acid". The file path is as follows:
 
-	$ /projects/lowryc/hex_acid_working/
+	$ /projects/lowryc/hex_acid/raw_data/
+
+Samples were run in two separate lanes on the sequencer, providing technical replicates and greater depth. These files will need to be aligned separately, then the resulting .bam files will need to be merged together.
 
 Finally, [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/filenames.txt) document explains the naming scheme for each ".fq.gz" file.
 
@@ -62,7 +64,7 @@ Trimmed samples were aligned to the Ensembl ([GRCm38](ftp://ftp.ensembl.org/pub/
 
 	$ /projects/lowryc/hex_acid_working/genome/
 
-Alignment was performed with [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/hisat2.sh) script. Post align QC will be done with [Preseq](http://smithlabresearch.org/software/preseq/) and [Rseqc](http://rseqc.sourceforge.net/).
+Alignment was performed with [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/hisat2.sh) script. Samples were given an rg-id during alignment to differentiate technical replicates. Post align QC will be done with [Preseq](http://smithlabresearch.org/software/preseq/) and [Rseqc](http://rseqc.sourceforge.net/).
 
 #### Generating Raw Read Counts
 
