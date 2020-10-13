@@ -10,7 +10,7 @@
 #SBATCH --ntasks=24           # Number of tasks per job
 #SBATCH --nodes=1             # Number of nodes per job
 #SBATCH --job-name=trimmomatic       # Job submission name
-#SBATCH --output=trimmomatic.%j.out   # Output file name with Job ID
+#SBATCH --output=/projects/tyak9569/lowry/hex_acid/scripts/out/trimmomatic.%j.out   # Output file name with Job ID
 #SBATCH --mail-type=END            # Email user when job finishes
 #SBATCH --mail-user=tyak9569@colorado.edu # Email address of user
 
@@ -23,18 +23,21 @@ module load singularity/3.3.0
 export SINGULARITY_TMPDIR=/scratch/summit/$USER
 export SINGULARITY_CACHEDIR=/scratch/summit/$USER
 
-mkdir /scratch/summit/tyak9569/hex_acid
-mkdir /scratch/summit/tyak9569/hex_acid/trimmedReads
+mkdir /scratch/summit/$USER/hex_acid
+mkdir /scratch/summit/$USER/hex_acid/trimmedReads
+mkdir /scratch/summit/$USER/hex_acid/trimmedReads/lane1
+mkdir /scratch/summit/$USER/hex_acid/trimmedReads/lane2
+mkdir /scratch/summit/$USER/hex_acid/trimmedReads/log
 
-# Run your program
-FILES1=/projects/lowryc/hex_acid/*fp*.fq.gz  # Designates the forward, paired-end reads as "f"
-for f in $FILES1
-do
-    f2=${f//fp/rp}}
-    f_trimmed=${f//.fq.gz/_trimmed.f.fq.gz}
-    f_trimmed=${f_trimmed//\/projects\/lowryc\/hex_acid/\/scratch\/summit\/tyak9569\/hex_acid\/trimmedReads}
-    f2_trimmed=${f2//.fq.gz/_trimmed.r.fq.gz}
-	f2_trimmed=${f2_trimmed//\/projects\/lowryc\/hex_acid/\/scratch\/summit\/tyak9569\/hex_acid\/trimmedReads}
-done
-
-singularity run /projects/lowryc/software/containers/rnaseq.sif trimmomatic PE -threads 24 -trimlog trimmed.txt -basein $f_trimmed -baseout ILLUMINACLIP MINLEN:20
+# Lane 1: Run your program
+singularity run /projects/lowryc/software/containers/rnaseq.sif trimmomatic PE \
+-threads 24 \
+-trimlog /scratch/summit/$USER/hex_acid/trimmedReads/log/6h_m1_t_l1_.txt \
+/projects/lowryc/hex_acid/raw_data/lane1/051915_R1_M1_16H.fastq \
+/projects/lowryc/hex_acid/raw_data/lane1/051915_R2_M1_16H.fastq \
+-baseout /scratch/summit/$USER/hex_acid/trimmedReads/lane1/6h_m1_t_l1_.fq.gz \
+ILLUMINACLIP:/projects/lowryc/software/containers/adapters/TruSeq3-PE-2.fa:2:30:10 \
+LEADING:3 \
+TRAILING:3 \
+SLIDINGWINDOW:4:15 \
+MINLEN:75
