@@ -28,7 +28,7 @@ Software will be called from the container located in the summit module at:
 
 	$ /projects/lowryc/software/containers/rnaseq.sif
 
-In order to work with the software contained in the container, we need to use the container module singularity. There should be no reason for you to work in the terminal with the container, so all bash scripts will call the software for you.
+In order to use the software located in the container, we need to use the container module "singularity". There should be no reason for you to work in the terminal with the container, so all bash scripts will call the software for you.
 
 
 We are going to require a blank job script to work with RC. An example test job can be found [**here**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/testjob.sh). The header of the script will need to be changed to reflect what the expected necessities of the job are. Line 27 will need to be edited to run the command you're out to run. The example script is set up to run the help menu for hisat2.
@@ -52,19 +52,19 @@ Finally, the output for the job you submitted will be placed into the folder whe
 
 #### Trimming Reads
 
-Trimming of raw reads was performed previously by David Smith using [trimmomatic (v0.39)](http://www.usadellab.org/cms/?page=trimmomatic), whose manual can be found [**here**](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf). 
+Trimming of raw reads was performed using [trimmomatic (v0.39)](http://www.usadellab.org/cms/?page=trimmomatic) (whose manual can be found [**here**](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)) and [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/trimmomatic.sh) script. All settings were matched to the ones used by David Smith used in his publication.
 
 #### Post Trim Quality Control
 
-[FastQC (v0.11.8)](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) was used for quality control of trimmed reads with [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/fastQC.sh) script. Completed FastQC html documents can be downloaded [**here**](https://github.com/tylerakonom/Lowry-Hexadecenoic/tree/master/outputs/fastQC)
+[FastQC (v0.11.8)](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) was used for quality control of trimmed reads with [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/fastQC_trimmed.sh) script. Completed FastQC html documents can be downloaded [**here**](https://github.com/tylerakonom/Lowry-Hexadecenoic/tree/master/outputs/fastQC)
 
 #### Aligning to the Genome
 
 Trimmed samples were aligned to the Ensembl ([GRCm38](ftp://ftp.ensembl.org/pub/release-101/gtf/mus_musculus/)) primary mouse genome, and indexes were created using [HISAT2 (v2.1.0)](https://ccb.jhu.edu/software/hisat2/manual.shtml) and [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/index_hisat2.sh) script. Indexes were saved at the following directory for future use:
 
-	$ /projects/lowryc/hex_acid_working/genome/
+	$ /projects/lowryc/hex_acid/genome/mouse/
 
-Alignment was performed with [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/hisat2.sh) script. Samples were given an rg-id during alignment to differentiate technical replicates. Post align QC will be done with [Preseq](http://smithlabresearch.org/software/preseq/) and [Rseqc](http://rseqc.sourceforge.net/).
+Alignment was performed with [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/hisat2.sh) script. Samples were given an rg-id during alignment to differentiate technical replicates once merged at a later step. Post align QC will be done with [Preseq](http://smithlabresearch.org/software/preseq/) and [Rseqc](http://rseqc.sourceforge.net/).
 
 #### Generating Raw Read Counts
 

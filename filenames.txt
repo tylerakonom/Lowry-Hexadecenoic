@@ -1,5 +1,14 @@
-File names were renamed to follow this format:
+File names were originally presented in this format:
 
-{time exposed to treatment}_{replicate number}_{treated vs untreated}_{forward or reverse paired-end read}.fq.gz
+{DATE}_{READ}_{M[N]}_{TREATMENT}.fq.gz
 
-For example, 1h_m1_t_fp.fq.gz is the forward read for mouse 1 treated with hexadecenoic acid for an hour before LPS administration.
+DATE: 051915 is the 6hr timepoint, and 080515 is the 1hr.
+M[N]: Treatment replicate
+READ: Either the forward or reverse read.
+
+
+File names were renamed to follow this format during trimming:
+
+{time exposed to treatment}_{replicate number}_{treated vs untreated}_{lane number}_{forward or reverse paired-end read}.fq.gz
+
+For example, 1h_m1_t_l1_1P.fq.gz is the first (forward or reverse) read for mouse 1 treated with hexadecenoic acid for an hour before LPS administration.
