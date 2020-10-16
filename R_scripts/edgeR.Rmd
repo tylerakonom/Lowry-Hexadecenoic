@@ -1,0 +1,71 @@
+---
+title: "edgeR"
+author: "Tyler Akonom"
+date: "9/14/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+require("knitr")
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+opts_knit$set(root.dir = "C:\\GitHub\\dnFGFR\\edgeR_outputs\\")
+library(dplyr)
+library(DESeq2)
+library(ggplot2)
+library(magrittr)
+library(edgeR)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Bring in counts and group data
+```{r}
+counts = read.table("all_counts.txt", header=TRUE, row.names=1, sep="\t")
+coldata = read.table("all_coldata.txt", header=TRUE, sep="\t")
+counts_sort <- counts[,order(colnames(counts))]
+coldata_sort <-coldata[order(coldata$sample),]
+y <- DGEList(counts = counts_sort, group = coldata_sort$group, genes = rownames(counts_sort))
+```
+
+# Filter by low expression
+```{r}
+keep <- filterByExpr(y)
+y <- y[keep, , keep.lib.sizes=FALSE]
+```
+
+
+# Normalizing The Data
+```{r}
+y <- calcNormFactors(y)
+```
+
+# Setting up the model
+
+```{r}
+design <- model.matrix(~0+group, data=y$samples)
+colnames(design) <- levels(y$samples$group)
+# design
+y <- estimateDisp(y, design)
+```
+
+
+#Comparing housing conditions in PN140 dnFGFR animals 
+```{r}
+fit <- glmQLFit(y, design)
+qlf <- glmQLFTest(fit, contrast=c(0, 0, 0, 0, 1, 0, -1, 0))
+
+# Visualizing results
+
+summary(decideTests(qlf))
+plotMD(qlf)
+abline(h=c(-1, 1), col="blue")
+
+# exporting to csv with FDR
+output <- qlf
+output$table$FDR <- p.adjust(qlf$table$PValue, "fdr")
+write.csv(as.data.frame(output), file  ="C:\\GitHub\\dnFGFR\\edgeR_outputs\\pn140\\dnFGFR\\pn140_housing_results.csv")
+```
+
+
+
