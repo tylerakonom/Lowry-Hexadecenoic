@@ -22,4 +22,4 @@ export SINGULARITY_TMPDIR=/scratch/summit/$USER
 export SINGULARITY_CACHEDIR=/scratch/summit/$USER
 
 # Build Hisat2 Index
-singularity run /projects/lowryc/software/containers/rnaseq.sif hisat2-build -p 16 /projects/lowryc/hex_acid_working/genome/Mus_musculus.GRCm38.dna.primary_assembly.fa /projects/lowryc/hex_acid_working/genome/GRCm38
+singularity run /projects/lowryc/software/containers/rnaseq.sif hisat2-build -p 16 /projects/lowryc/genome/mouse/Mus_musculus.GRCm38.dna.primary_assembly.fa /projects/lowryc/genome/mouse/GRCm38
