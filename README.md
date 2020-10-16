@@ -66,6 +66,10 @@ Trimmed samples were aligned to the Ensembl ([GRCm38](ftp://ftp.ensembl.org/pub/
 
 Alignment was performed with [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/hisat2.sh) script. Samples were given an rg-id during alignment to differentiate technical replicates once merged at a later step. Post align QC will be done with [Preseq](http://smithlabresearch.org/software/preseq/) and [Rseqc](http://rseqc.sourceforge.net/).
 
+#### Merging Lanes (Technical Replicates)
+
+The technical replicates for each sample (lanes 1 and 2) were merged using [samtools v1.9](https://www.htslib.org/doc/1.9/samtools.html) and [**this**]() script.
+
 #### Generating Raw Read Counts
 
 Raw read counts will be generated using the [Rsubread (v2.0.1)](https://bioconductor.org/packages/release/bioc/html/Rsubread.html) for [R (v3.6.1)](https://www.r-project.org/) package you will need to install on your summit account. Processing needs to be performed by switching to a compile node with this command:
