@@ -22,10 +22,24 @@ module load singularity/3.3.0
 export SINGULARITY_TMPDIR=/scratch/summit/$USER
 export SINGULARITY_CACHEDIR=/scratch/summit/$USER
 
+# Create directories
+
+mkdir /scratch/summit/$USER/hex_acid
+mkdir /scratch/summit/$USER/hex_acid/fastqc
+mkdir /scratch/summit/$USER/hex_acid/fastqc/trimmed
+mkdir /scratch/summit/$USER/hex_acid/fastqc/trimmed/lane1
+mkdir /scratch/summit/$USER/hex_acid/fastqc/trimmed/lane2
+
 # run FastQC for each file
 
-FILES1=/projects/lowryc/hex_acid/*.fq.gz
+FILES1=/scratch/summit/tyak9569/hex_acid/trimmedReads/lane1/*.fq.gz
 for f in $FILES1
 do
-  	singularity run /projects/lowryc/software/containers/rnaseq.sif fastqc -t 24 -o /scratch/summit/tyak9569/hex_acid/fastqc/raw/ -d /scratch/summit/tyak9569/hex_acid/fastqc/raw $f
+  	singularity run /projects/lowryc/software/containers/rnaseq.sif fastqc -t 24 -o /scratch/summit/tyak9569/hex_acid/fastqc/trimmed/lane1/ -d /scratch/summit/tyak9569/hex_acid/fastqc/trimmed/lane1/ $f
+done
+
+FILES1=/scratch/summit/tyak9569/hex_acid/trimmedReads/lane2/*.fq.gz
+for f in $FILES1
+do
+  	singularity run /projects/lowryc/software/containers/rnaseq.sif fastqc -t 24 -o /scratch/summit/tyak9569/hex_acid/fastqc/trimmed/lane2/ -d /scratch/summit/tyak9569/hex_acid/fastqc/trimmed/lane2/ $f
 done
