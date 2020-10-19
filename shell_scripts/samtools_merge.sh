@@ -24,7 +24,7 @@ export SINGULARITY_TMPDIR=/scratch/summit/$USER
 export SINGULARITY_CACHEDIR=/scratch/summit/$USER
 
 # Create output directory
-mkdir /scratch/$USER/hex_acid/aligned/merged
+mkdir /scratch/summit/$USER/hex_acid/aligned/merged
 
 # Merge files
 singularity run /projects/lowryc/software/containers/rnaseq.sif samtools merge /scratch/summit/$USER/hex_acid/aligned/merged/1h_m1_t.bam /scratch/summit/$USER/hex_acid/aligned/lane1/1h_m1_t.bam /scratch/summit/$USER/hex_acid/aligned/lane2/1h_m1_t.bam

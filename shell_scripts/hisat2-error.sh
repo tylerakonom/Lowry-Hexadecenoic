@@ -5,7 +5,7 @@
 
 #SBATCH --partition=shas     # Summit partition
 #SBATCH --qos=normal                 # Summit qos
-#SBATCH --time=20:00:00           # Max wall time in HHH:MM:SS
+#SBATCH --time=6:00:00           # Max wall time in HHH:MM:SS
 #SBATCH --ntasks=24           # Number of tasks per job
 #SBATCH --nodes=1             # Number of nodes per job
 #SBATCH --job-name=Hisat2      # Job submission name

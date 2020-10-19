@@ -1,0 +1,13 @@
+
+module load singularity/3.3.0
+
+singularity run /projects/lowryc/software/containers/rnaseq.sif samtools flagstat 1h_m1_t.bam
+
+lane1
+28667172
+
+lane2
+26112393
+
+merged
+54779565
