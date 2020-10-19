@@ -22,7 +22,7 @@ gtf=("C://GitHub//Lowry-Hexadecenoic//reads//Mus_musculus.GRCm38.101.gtf")
 
 ## Output the file:
 
-OUT="C://GitHub//Lowry-Hexadecenoic//"
+OUT="C://GitHub//Lowry-Hexadecenoic//count_files//"
 
 senseunique=featureCounts(files,
 isGTFAnnotationFile = TRUE,
