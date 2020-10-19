@@ -1,0 +1,13 @@
+sample	time	treatment
+X1h_m1_t	1hr	treated
+X1h_m1_u	1hr	untreated
+X1h_m2_t	1hr	treated
+X1h_m2_u	1hr	untreated
+X1h_m3_t	1hr	treated
+X1h_m3_u	1hr	untreated
+X6h_m1_t	6hr	treated
+X6h_m1_u	6hr	untreated
+X6h_m2_t	6hr	treated
+X6h_m2_u	6hr	untreated
+X6h_m3_t	6hr	treated
+X6h_m3_u	6hr	untreated
