@@ -4,3 +4,4 @@ archive/.DS_Store
 .DS_Store
 R_scripts/.RData
 R_scripts/.Rhistory
+*.bam
