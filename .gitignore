@@ -5,3 +5,5 @@ archive/.DS_Store
 R_scripts/.RData
 R_scripts/.Rhistory
 *.bam
+*.tmp
+reads/Mus_musculus.GRCm38.101.gtf

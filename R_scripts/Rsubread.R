@@ -3,26 +3,26 @@
 library(Rsubread)
 
 files=c(
-'/scratch/summit/$USER/hex_acid/aligned/merged/1h_m1_t.bam',
-'/scratch/summit/$USER/hex_acid/aligned/merged/1h_m1_u.bam',
-'/scratch/summit/$USER/hex_acid/aligned/merged/1h_m2_t.bam',
-'/scratch/summit/$USER/hex_acid/aligned/merged/1h_m2_u.bam',
-'/scratch/summit/$USER/hex_acid/aligned/merged/1h_m3_t.bam',
-'/scratch/summit/$USER/hex_acid/aligned/merged/1h_m3_u.bam',
-'/scratch/summit/$USER/hex_acid/aligned/merged/6h_m1_t.bam',
-'/scratch/summit/$USER/hex_acid/aligned/merged/6h_m1_u.bam',
-'/scratch/summit/$USER/hex_acid/aligned/merged/6h_m2_t.bam',
-'/scratch/summit/$USER/hex_acid/aligned/merged/6h_m2_u.bam',
-'/scratch/summit/$USER/hex_acid/aligned/merged/6h_m3_t.bam',
-'/scratch/summit/$USER/hex_acid/aligned/merged/6h_m3_u.bam')
+'C://GitHub//Lowry-Hexadecenoic//reads//1h_m1_t.bam',
+'C://GitHub//Lowry-Hexadecenoic//reads//1h_m1_u.bam',
+'C://GitHub//Lowry-Hexadecenoic//reads//1h_m2_t.bam',
+'C://GitHub//Lowry-Hexadecenoic//reads//1h_m2_u.bam',
+'C://GitHub//Lowry-Hexadecenoic//reads//1h_m3_t.bam',
+'C://GitHub//Lowry-Hexadecenoic//reads//1h_m3_u.bam',
+'C://GitHub//Lowry-Hexadecenoic//reads//6h_m1_t.bam',
+'C://GitHub//Lowry-Hexadecenoic//reads//6h_m1_u.bam',
+'C://GitHub//Lowry-Hexadecenoic//reads//6h_m2_t.bam',
+'C://GitHub//Lowry-Hexadecenoic//reads//6h_m2_u.bam',
+'C://GitHub//Lowry-Hexadecenoic//reads//6h_m3_t.bam',
+'C://GitHub//Lowry-Hexadecenoic//reads//6h_m3_u.bam')
 
 ## Point to GTF file:
 
-gtf=("/projects/lowryc/genome/mouse/Mus_musculus.GRCm38.101.gtf")
+gtf=("C://GitHub//Lowry-Hexadecenoic//reads//Mus_musculus.GRCm38.101.gtf")
 
 ## Output the file:
 
-OUT="/scratch/summit/$USER/hex_acid/"
+OUT="C://GitHub//Lowry-Hexadecenoic//"
 
 senseunique=featureCounts(files,
 isGTFAnnotationFile = TRUE,
