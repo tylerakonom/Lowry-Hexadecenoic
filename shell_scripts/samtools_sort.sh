@@ -25,5 +25,5 @@ outdirectory=/scratch/summit/tyak9569/hex_acid/aligned/sorted/
 mkdir -p $outdirectory
 
 # Merge files
-singularity run /projects/lowryc/software/containers/rnaseq.sif samtools sort -m 25G -o /scratch/summit/$USER/hex_acid/aligned/merged/${filename}.sort.bam -T ${SLURM_JOBID} -@ 4 /scratch/summit/$USER/hex_acid/aligned/merged/${filename}.bam
+singularity run /projects/lowryc/software/containers/rnaseq.sif samtools sort -m 25G -o ${outdirectory}${filename}.sort.bam -T ${SLURM_JOBID} -@ 4 /scratch/summit/$USER/hex_acid/aligned/merged/${filename}.bam
 singularity run /projects/lowryc/software/containers/rnaseq.sif samtools index /scratch/summit/$USER/hex_acid/aligned/merged/${filename}.sort.bam
