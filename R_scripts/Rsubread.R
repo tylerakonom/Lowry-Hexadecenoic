@@ -29,7 +29,7 @@ isGTFAnnotationFile = TRUE,
 annot.ext = gtf,
 GTF.attrType = "gene_id",
 allowMultiOverlap = FALSE,
-nthreads = 18,
+nthreads = 12,
 isPairedEnd=TRUE,
 strandSpecific = 1)
 
@@ -45,7 +45,7 @@ annot.ext = gtf,
 GTF.attrType = "gene_id",
 allowMultiOverlap = TRUE,
 isPairedEnd=FALSE,
-nthreads = 18,
+nthreads = 12,
 strandSpecific = 2)
  
 write.table(x=data.frame(

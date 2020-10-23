@@ -16,12 +16,14 @@ library(magrittr)
 #Load counts and sample info
 ```{r}
 counts = read.table("counts.txt", header=TRUE, row.names=1, sep="\t")
+sortedCounts = read.table("sortedCounts.txt", header=TRUE, row.names=1, sep="\t")
 coldata = read.table("coldata.txt", header=TRUE, sep="\t")
 ```
 
 #remove length from counts table
 ```{r}
 counts['Length'] = NULL
+sortedCounts['Length'] = NULL
 ```
 
 # Filter data to show different cohorts
@@ -29,10 +31,12 @@ counts['Length'] = NULL
 ```{r}
 require(dplyr)
 counts1hr <- select(counts, contains("1h"))
+sortedCounts1hr <- select(sortedCounts, contains("1h"))
 coldata1hr <- filter(coldata, time=="1hr")
 coldata1hr['time'] = NULL
 
 counts6hr <- select(counts, contains("6h"))
+sortedCounts6hr <- select(sortedCounts, contains("6h"))
 coldata6hr <- filter(coldata, time=="6hr")
 coldata6hr['time'] = NULL
 ```
