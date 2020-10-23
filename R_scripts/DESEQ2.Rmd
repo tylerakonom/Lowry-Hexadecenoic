@@ -97,13 +97,13 @@ dev.off()
 # Effect of 10(Z)-HA administration for 6 hours:
 ```{r}
 #Designate File Output
-setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\6hr\\")
+setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\s6hr\\")
 
-dds = DESeqDataSetFromMatrix(countData = counts6hr, colData = coldata6hr, design = ~  mouse + treatment)
+dds = DESeqDataSetFromMatrix(countData = sortedCounts6hr, colData = coldata6hr, design = ~  mouse + treatment)
 
 #remove low count genes (anything less than 20 reads)
-keep <- rowSums(counts(dds)) >= 20
-dds <- dds[keep,]
+# keep <- rowSums(counts(dds)) >= 20
+# dds <- dds[keep,]
 
 #set comparison level, 
 dds$treatment <- relevel(dds$treatment, ref = "untreated")
