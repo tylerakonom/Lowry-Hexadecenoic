@@ -8,6 +8,7 @@
 #SBATCH --time=6:00:00           # Max wall time in HHH:MM:SS
 #SBATCH --ntasks=24           # Number of tasks per job
 #SBATCH --nodes=1             # Number of nodes per job
+#SBATCH --mem=240gb           # Memory Allocated
 #SBATCH --job-name=Hisat2      # Job submission name
 #SBATCH --output=o.Hisat2.%j.out   # Output file name with Job ID
 #SBATCH --mail-type=END            # Email user when job finishes

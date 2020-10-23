@@ -45,7 +45,7 @@ coldata6hr['time'] = NULL
 
 #make deseq2 object
 ```{r}
-dds = DESeqDataSetFromMatrix(countData = counts6hr, colData = coldata6hr, design = ~ treatment)
+dds = DESeqDataSetFromMatrix(countData = counts6hr, colData = coldata6hr, design = ~ mouse + treatment)
 ```
 
 #transform counts for PCA plots
@@ -95,7 +95,7 @@ dev.off()
 #Designate File Output
 setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\6hr\\")
 
-dds = DESeqDataSetFromMatrix(countData = counts6hr, colData = coldata6hr, design = ~ treatment)
+dds = DESeqDataSetFromMatrix(countData = counts6hr, colData = coldata6hr, design = ~  mouse + treatment)
 
 #remove low count genes (anything less than 20 reads)
 keep <- rowSums(counts(dds)) >= 20
