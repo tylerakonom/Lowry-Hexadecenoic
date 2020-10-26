@@ -31,12 +31,12 @@ GTF.attrType = "gene_id",
 allowMultiOverlap = FALSE,
 nthreads = 12,
 isPairedEnd=TRUE,
-strandSpecific = 1)
+strandSpecific = 2)
 
 write.table(x=data.frame(
 senseunique$annotation[,c("GeneID","Length")],
 senseunique$counts,stringsAsFactors=FALSE),
-file=paste(OUT,"Rsubread_sorted_senseunique.txt"),
+file=paste(OUT,"S2_Rsubread_sorted_senseunique.txt"),
 quote=FALSE,sep="\t",row.names=FALSE) 
 
 antisenseunique=featureCounts(files,
@@ -44,9 +44,9 @@ isGTFAnnotationFile = TRUE,
 annot.ext = gtf,
 GTF.attrType = "gene_id",
 allowMultiOverlap = TRUE,
-isPairedEnd=FALSE,
+isPairedEnd=TRUE,
 nthreads = 12,
-strandSpecific = 2)
+strandSpecific = 1)
  
 write.table(x=data.frame(
 antisenseunique$annotation[,c("GeneID","Length")],

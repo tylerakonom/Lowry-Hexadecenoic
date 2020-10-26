@@ -16,7 +16,6 @@ library(magrittr)
 #Load counts and sample info
 ```{r}
 counts = read.table("counts.txt", header=TRUE, row.names=1, sep="\t")
-sortedCounts = read.table("sortedCounts.txt", header=TRUE, row.names=1, sep="\t")
 coldata = read.table("coldata.txt", header=TRUE, sep="\t")
 ```
 
@@ -31,12 +30,10 @@ sortedCounts['Length'] = NULL
 ```{r}
 require(dplyr)
 counts1hr <- select(counts, contains("1h"))
-sortedCounts1hr <- select(sortedCounts, contains("1h"))
 coldata1hr <- filter(coldata, time=="1hr")
 coldata1hr['time'] = NULL
 
 counts6hr <- select(counts, contains("6h"))
-sortedCounts6hr <- select(sortedCounts, contains("6h"))
 coldata6hr <- filter(coldata, time=="6hr")
 coldata6hr['time'] = NULL
 ```
@@ -49,7 +46,7 @@ coldata6hr['time'] = NULL
 
 #make deseq2 object
 ```{r}
-dds = DESeqDataSetFromMatrix(countData = sortedCounts6hr, colData = coldata6hr, design = ~ mouse + treatment)
+dds = DESeqDataSetFromMatrix(countData = counts, colData = coldata, design = ~ treatment)
 ```
 
 #transform counts for PCA plots
@@ -97,9 +94,9 @@ dev.off()
 # Effect of 10(Z)-HA administration for 6 hours:
 ```{r}
 #Designate File Output
-setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\s6hr\\")
+setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\6hr\\")
 
-dds = DESeqDataSetFromMatrix(countData = sortedCounts6hr, colData = coldata6hr, design = ~  mouse + treatment)
+dds = DESeqDataSetFromMatrix(countData = counts, colData = coldata6hr, design = ~  mouse + treatment)
 
 #remove low count genes (anything less than 20 reads)
 # keep <- rowSums(counts(dds)) >= 20
@@ -135,6 +132,44 @@ dev.off()
 # 1hr Treatment Group -----------------------------------------------------------------------------------------------------------------------------------
 
 # Effect of 10(Z)-HA administration for 1 hour:
+```{r}
+#Designate File Output
+setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\s1hr\\")
+
+dds = DESeqDataSetFromMatrix(countData = sortedCounts1hr, colData = coldata1hr, design = ~ treatment)
+
+#remove low count genes (anything less than 20 reads)
+# keep <- rowSums(counts(dds)) >= 20
+# dds <- dds[keep,]
+
+#set comparison level, 
+dds$treatment <- relevel(dds$treatment, ref = "untreated")
+
+#perform normalization, dispersion estimate, and statistical tests
+dds = DESeq(dds)
+
+#plot dispersions
+pdf("treatment_dispersionPlot.pdf")
+plotDispEsts(dds )
+dev.off()
+
+#write out normalized counts
+normed = counts(dds, normalized=TRUE)
+write.csv(normed, file="s1hr_normalized_counts.csv")
+
+#write out statistical results
+res <- results(dds)
+write.csv(as.data.frame(res), file="s1hr_treatment_results.csv")
+
+#plot fold changes with 2 fold blue line added, alpha is FDR cutoff, change to whatever cutoff you want
+pdf("s1hr_treatment_MAPlot.pdf")
+DESeq2::plotMA(res, alpha = 0.1, ylim=c(-3,3), cex=.4)
+abline(h=c(-1,1), col="dodgerblue", lwd=2)
+dev.off()
+
+```
+
+
 ```{r}
 #Designate File Output
 setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\s1hr\\")
