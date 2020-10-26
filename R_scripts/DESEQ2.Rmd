@@ -49,7 +49,7 @@ coldata6hr['time'] = NULL
 
 #make deseq2 object
 ```{r}
-dds = DESeqDataSetFromMatrix(countData = counts6hr, colData = coldata6hr, design = ~ mouse + treatment)
+dds = DESeqDataSetFromMatrix(countData = sortedCounts6hr, colData = coldata6hr, design = ~ mouse + treatment)
 ```
 
 #transform counts for PCA plots
@@ -63,15 +63,15 @@ ntd <- normTransform(dds)
 ```{r}
 setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\pdfs\\")
 library("vsn")
-pdf("sdplot_6hr_shiftedLogtransformed.pdf")
+pdf("sdplot_s6hr_shiftedLogtransformed.pdf")
 meanSdPlot(assay(ntd))
 dev.off()
 
-pdf("sdplot_6hr_regLogtransformed.pdf")
+pdf("sdplot_s6hr_regLogtransformed.pdf")
 meanSdPlot(assay(rld))
 dev.off()
 
-pdf("sdplot_6hr_varstabilizedtransformed.pdf")
+pdf("sdplot_s6hr_varstabilizedtransformed.pdf")
 meanSdPlot(assay(vst))
 dev.off()
 ```
@@ -137,13 +137,13 @@ dev.off()
 # Effect of 10(Z)-HA administration for 1 hour:
 ```{r}
 #Designate File Output
-setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\1hr\\")
+setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\s1hr\\")
 
-dds = DESeqDataSetFromMatrix(countData = counts1hr, colData = coldata1hr, design = ~ treatment)
+dds = DESeqDataSetFromMatrix(countData = sortedCounts1hr, colData = coldata1hr, design = ~ treatment)
 
 #remove low count genes (anything less than 20 reads)
-keep <- rowSums(counts(dds)) >= 20
-dds <- dds[keep,]
+# keep <- rowSums(counts(dds)) >= 20
+# dds <- dds[keep,]
 
 #set comparison level, 
 dds$treatment <- relevel(dds$treatment, ref = "untreated")
@@ -158,14 +158,14 @@ dev.off()
 
 #write out normalized counts
 normed = counts(dds, normalized=TRUE)
-write.csv(normed, file="1hr_normalized_counts.csv")
+write.csv(normed, file="s1hr_normalized_counts.csv")
 
 #write out statistical results
 res <- results(dds)
-write.csv(as.data.frame(res), file="1hr_treatment_results.csv")
+write.csv(as.data.frame(res), file="s1hr_treatment_results.csv")
 
 #plot fold changes with 2 fold blue line added, alpha is FDR cutoff, change to whatever cutoff you want
-pdf("1hr_treatment_MAPlot.pdf")
+pdf("s1hr_treatment_MAPlot.pdf")
 DESeq2::plotMA(res, alpha = 0.1, ylim=c(-3,3), cex=.4)
 abline(h=c(-1,1), col="dodgerblue", lwd=2)
 dev.off()
