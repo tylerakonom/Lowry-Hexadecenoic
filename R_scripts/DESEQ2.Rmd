@@ -46,7 +46,7 @@ coldata6hr['time'] = NULL
 
 #make deseq2 object
 ```{r}
-dds = DESeqDataSetFromMatrix(countData = counts, colData = coldata, design = ~ treatment)
+dds = DESeqDataSetFromMatrix(countData = counts, colData = coldata, design = ~ mouse + treatment)
 ```
 
 #transform counts for PCA plots
@@ -60,7 +60,7 @@ ntd <- normTransform(dds)
 ```{r}
 setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\pdfs\\")
 library("vsn")
-pdf("sdplot_s6hr_shiftedLogtransformed.pdf")
+pdf("sdplot_shiftedLogtransformed.pdf")
 meanSdPlot(assay(ntd))
 dev.off()
 
@@ -77,7 +77,7 @@ dev.off()
 ```{r}
 setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\pdfs\\")
 
-pdf("6hr_treatment_PCA.pdf")
+pdf("treatment_PCA.pdf")
 sampleDists <- dist(t(assay(ntd)))
 plotPCA(rld, intgroup=c("treatment"))
 dev.off()
@@ -96,7 +96,7 @@ dev.off()
 #Designate File Output
 setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\6hr\\")
 
-dds = DESeqDataSetFromMatrix(countData = counts, colData = coldata6hr, design = ~  mouse + treatment)
+dds = DESeqDataSetFromMatrix(countData = counts6hr, colData = coldata6hr, design = ~  mouse + treatment)
 
 #remove low count genes (anything less than 20 reads)
 # keep <- rowSums(counts(dds)) >= 20
@@ -110,7 +110,7 @@ dds = DESeq(dds)
 
 #plot dispersions
 pdf("treatment_dispersionPlot.pdf")
-plotDispEsts(dds )
+plotDispEsts(dds)
 dev.off()
 
 #write out normalized counts
@@ -136,7 +136,7 @@ dev.off()
 #Designate File Output
 setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\s1hr\\")
 
-dds = DESeqDataSetFromMatrix(countData = sortedCounts1hr, colData = coldata1hr, design = ~ treatment)
+dds = DESeqDataSetFromMatrix(countData = counts1hr, colData = coldata1hr, design = ~ treatment)
 
 #remove low count genes (anything less than 20 reads)
 # keep <- rowSums(counts(dds)) >= 20
