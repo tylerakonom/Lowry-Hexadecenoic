@@ -8,3 +8,8 @@ R_scripts/.Rhistory
 *.tmp
 reads/Mus_musculus.GRCm38.101.gtf
 *.bai
+genome/fixedgenes.bed
+genome/fixedgenes.gtf
+genome/genes.gtf
+reads/mm10.ncbiRefSeq.gtf
+reads/sorted/fixedgenes.bed
