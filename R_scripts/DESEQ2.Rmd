@@ -15,7 +15,7 @@ library(magrittr)
 
 #Load counts and sample info
 ```{r}
-counts = read.table("counts.txt", header=TRUE, row.names=1, sep="\t")
+counts = read.table("refcounts.txt", header=TRUE, row.names=1, sep="\t")
 coldata = read.table("coldata.txt", header=TRUE, sep="\t")
 ```
 
