@@ -52,7 +52,7 @@ Finally, the output for the job you submitted will be placed into the folder whe
 
 #### Trimming Reads
 
-Trimming of raw reads was performed using [trimmomatic (v0.39)](http://www.usadellab.org/cms/?page=trimmomatic) (whose manual can be found [**here**](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)) and [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/trimmomatic.sh) script. All settings were matched to the ones used by David Smith used in his publication.
+Trimming of raw reads was performed using [trimmomatic (v0.39)](http://www.usadellab.org/cms/?page=trimmomatic) (whose manual can be found [**here**](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)) and [**trimmomatic.sh**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/trimmomatic.sh). All settings were matched to the ones used by David Smith used in his publication.
 
 #### Post Trim Quality Control
 
@@ -60,30 +60,44 @@ Trimming of raw reads was performed using [trimmomatic (v0.39)](http://www.usade
 
 #### Aligning to the Genome
 
-Trimmed samples were aligned to the Ensembl ([GRCm38](ftp://ftp.ensembl.org/pub/release-101/gtf/mus_musculus/)) primary mouse genome, and indexes were created using [HISAT2 (v2.1.0)](https://ccb.jhu.edu/software/hisat2/manual.shtml) and [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/index_hisat2.sh) script. Indexes were saved at the following directory for future use:
+Trimmed samples were aligned to the NCBI ([GRCm38 mm10](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001635.20/)) mouse genome, and indexes were created using [HISAT2 (v2.1.0)](https://ccb.jhu.edu/software/hisat2/manual.shtml) and [**index_hisat2.sh**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/index_hisat2.sh). Indexes were saved at the following directory for future use:
 
 	$ /projects/lowryc/hex_acid/genome/mouse/
 
-Alignment was performed with [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/hisat2.sh) script. Samples were given an rg-id during alignment to differentiate technical replicates once merged at a later step. Post align QC will be done with [Preseq](http://smithlabresearch.org/software/preseq/) and [Rseqc](http://rseqc.sourceforge.net/).
+Alignment was performed with [**hisat2.sh**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/hisat2.sh). Samples were given an rg-id during alignment to differentiate technical replicates once merged at a later step. 
+
+Post align QC will be done with [Preseq](http://smithlabresearch.org/software/preseq/) and [Rseqc](http://rseqc.sourceforge.net/). 
 
 #### Merging Lanes (Technical Replicates)
 
-The technical replicates for each sample (lanes 1 and 2) were merged using [samtools v1.9](https://www.htslib.org/doc/1.9/samtools.html) and [**this**]() script.
-
-#### Generating Raw Read Counts
-
-Raw read counts will be generated using the [Rsubread (v2.0.1)](https://bioconductor.org/packages/release/bioc/html/Rsubread.html) for [R (v3.6.1)](https://www.r-project.org/) package you will need to install on your summit account. Processing needs to be performed by switching to a compile node with this command:
+The technical replicates for each sample (lanes 1 and 2) were merged using [samtools v1.9](https://www.htslib.org/doc/1.9/samtools.html) and [samtools_merge.sh](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/samtools_merge.sh). Unsorted, merged .bam files were then sorted using [Samtools v1.9](https://www.htslib.org/doc/1.9/samtools.html) and [samtools_sort.sh](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/samtools_sort.sh). This script was queued in Summit by calling the script and inputting filenames with [run_samtools_sort.sh](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/shell_scripts/run_samtools_sort.sh). This was done in the bash terminal in a "compile" node. To log in to a compile node, this command was used:
 
 	$ ssh scompile
 
-R should be called in the anaconda environment on summit:
+By running the following command, the script "run_samtools_sort.sh" was run, file names were generated automatically and input into the "samtools_sort.sh" script:
+
+	$ bash run_samtools_sort.sh
+
+#### Generating Raw Read Counts
+
+Raw read counts were generated using the [Rsubread (v2.0.1)](https://bioconductor.org/packages/release/bioc/html/Rsubread.html) for [R (v3.6.1)](https://www.r-project.org/) package installed on summit. Reads were annotated with the [NCBI refSeq genome](https://www.ncbi.nlm.nih.gov/refseq/) downloaded from [**here**](https://support.illumina.com/sequencing/sequencing_software/igenome.html). Processing was performed by switching to a compile node with this command:
+
+	$ ssh scompile
+
+R was run by calling and running R in the anaconda environment on summit:
 
 	$ source /curc/sw/anaconda/default
 	$ conda activate r361
 	$ R
 
-Running Rsubread can be done with [**this**](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/Rsubread.R) as an example script. The final counts text file will be used for the remainder of the analysis.
+The script [Rsubread.R](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/R_scripts/Rsubread.R) was entered into the R terminal, and the output was stored as a text file for processing and analysis.
 
 From this point on, the processing will be performed on a local machine. The command to copy a file from the summit cluster looks like this:
 
 	$ scp <username>@login.rc.colorado.edu:<path to file you want to transfer> ~<path to folder on the local machine you want to copy to>
+
+
+## Analyzing Counts
+*Turning counts into results.*
+
+Raw read counts were normalized and analyzed for differential expression using [DESeq2(v1.26.0)](https://bioconductor.org/packages/release/bioc/html/DESeq2.html) for R, and [DESEQ2.rmd](https://github.com/tylerakonom/Lowry-Hexadecenoic/blob/master/R_scripts/DESEQ2.Rmd). All outputs were stored under [deseq_outputs](https://github.com/tylerakonom/Lowry-Hexadecenoic/tree/master/deseq_outputs) as .csv files, and "working" excel spreadsheets were created to assist in analysis. This is a work in progress, and will be updated soon!
