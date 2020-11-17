@@ -1,8 +1,8 @@
 ## Running Rsubread for counts:
 
-# $ source /curc/sw/anaconda/default
-# $ conda activate r361
-# $ R
+# source /curc/sw/anaconda/default
+# conda activate r361
+# R
 
 library(Rsubread)
 TMP = "/scratch/summit/tyak9569/hex_acid/rsub/"
@@ -42,7 +42,7 @@ write.table(x=data.frame(
 senseunique$annotation[,c("GeneID","Length")],
 senseunique$counts,stringsAsFactors=FALSE),
 file=paste(OUT,"S2_Rsubread_sorted_senseunique.txt"),
-quote=FALSE,sep="//t",row.names=FALSE) 
+quote=FALSE,sep="\t",row.names=FALSE) 
 
 
 
