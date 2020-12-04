@@ -1,0 +1,168 @@
+flagstat for 1h_m1_t
+54779565 + 0 in total (QC-passed reads + QC-failed reads)
+8095631 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+48573222 + 0 mapped (88.67% : N/A)
+46683934 + 0 paired in sequencing
+23341967 + 0 read1
+23341967 + 0 read2
+31093994 + 0 properly paired (66.61% : N/A)
+37753334 + 0 with itself and mate mapped
+2724257 + 0 singletons (5.84% : N/A)
+6291690 + 0 with mate mapped to a different chr
+5171465 + 0 with mate mapped to a different chr (mapQ>=5)
+flagstat for 1h_m1_u
+58622664 + 0 in total (QC-passed reads + QC-failed reads)
+7606454 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+49980520 + 0 mapped (85.26% : N/A)
+51016210 + 0 paired in sequencing
+25508105 + 0 read1
+25508105 + 0 read2
+32765268 + 0 properly paired (64.23% : N/A)
+38831456 + 0 with itself and mate mapped
+3542610 + 0 singletons (6.94% : N/A)
+5748864 + 0 with mate mapped to a different chr
+4751307 + 0 with mate mapped to a different chr (mapQ>=5)
+flagstat for 1h_m2_t
+67173556 + 0 in total (QC-passed reads + QC-failed reads)
+10337590 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+60592275 + 0 mapped (90.20% : N/A)
+56835966 + 0 paired in sequencing
+28417983 + 0 read1
+28417983 + 0 read2
+39082238 + 0 properly paired (68.76% : N/A)
+47137128 + 0 with itself and mate mapped
+3117557 + 0 singletons (5.49% : N/A)
+7622656 + 0 with mate mapped to a different chr
+6310109 + 0 with mate mapped to a different chr (mapQ>=5)
+flagstat for 1h_m2_u
+63437925 + 0 in total (QC-passed reads + QC-failed reads)
+8684685 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+55016183 + 0 mapped (86.72% : N/A)
+54753240 + 0 paired in sequencing
+27376620 + 0 read1
+27376620 + 0 read2
+35777644 + 0 properly paired (65.34% : N/A)
+42620798 + 0 with itself and mate mapped
+3710700 + 0 singletons (6.78% : N/A)
+6372578 + 0 with mate mapped to a different chr
+5316581 + 0 with mate mapped to a different chr (mapQ>=5)
+flagstat for 1h_m3_t
+66164797 + 0 in total (QC-passed reads + QC-failed reads)
+9187611 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+57266167 + 0 mapped (86.55% : N/A)
+56977186 + 0 paired in sequencing
+28488593 + 0 read1
+28488593 + 0 read2
+37094530 + 0 properly paired (65.10% : N/A)
+44366384 + 0 with itself and mate mapped
+3712172 + 0 singletons (6.52% : N/A)
+6789130 + 0 with mate mapped to a different chr
+5619077 + 0 with mate mapped to a different chr (mapQ>=5)
+flagstat for 1h_m3_u
+50460653 + 0 in total (QC-passed reads + QC-failed reads)
+7414537 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+44956171 + 0 mapped (89.09% : N/A)
+43046116 + 0 paired in sequencing
+21523058 + 0 read1
+21523058 + 0 read2
+29240328 + 0 properly paired (67.93% : N/A)
+35044662 + 0 with itself and mate mapped
+2496972 + 0 singletons (5.80% : N/A)
+5463220 + 0 with mate mapped to a different chr
+4511034 + 0 with mate mapped to a different chr (mapQ>=5)
+flagstat for 6h_m1_t
+52465267 + 0 in total (QC-passed reads + QC-failed reads)
+3844231 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+34658810 + 0 mapped (66.06% : N/A)
+48621036 + 0 paired in sequencing
+24310518 + 0 read1
+24310518 + 0 read2
+27212614 + 0 properly paired (55.97% : N/A)
+29146274 + 0 with itself and mate mapped
+1668305 + 0 singletons (3.43% : N/A)
+1776028 + 0 with mate mapped to a different chr
+1473785 + 0 with mate mapped to a different chr (mapQ>=5)
+flagstat for 6h_m1_u
+55975563 + 0 in total (QC-passed reads + QC-failed reads)
+5942683 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+40747772 + 0 mapped (72.80% : N/A)
+50032880 + 0 paired in sequencing
+25016440 + 0 read1
+25016440 + 0 read2
+25845632 + 0 properly paired (51.66% : N/A)
+31138942 + 0 with itself and mate mapped
+3666147 + 0 singletons (7.33% : N/A)
+5025278 + 0 with mate mapped to a different chr
+4190102 + 0 with mate mapped to a different chr (mapQ>=5)
+flagstat for 6h_m2_t
+53337680 + 0 in total (QC-passed reads + QC-failed reads)
+4999528 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+40331686 + 0 mapped (75.62% : N/A)
+48338152 + 0 paired in sequencing
+24169076 + 0 read1
+24169076 + 0 read2
+28734050 + 0 properly paired (59.44% : N/A)
+32517338 + 0 with itself and mate mapped
+2814820 + 0 singletons (5.82% : N/A)
+3569986 + 0 with mate mapped to a different chr
+3007077 + 0 with mate mapped to a different chr (mapQ>=5)
+flagstat for 6h_m2_u
+49330659 + 0 in total (QC-passed reads + QC-failed reads)
+5288033 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+36973613 + 0 mapped (74.95% : N/A)
+44042626 + 0 paired in sequencing
+22021313 + 0 read1
+22021313 + 0 read2
+23478168 + 0 properly paired (53.31% : N/A)
+28351616 + 0 with itself and mate mapped
+3333964 + 0 singletons (7.57% : N/A)
+4619244 + 0 with mate mapped to a different chr
+3884031 + 0 with mate mapped to a different chr (mapQ>=5)
+flagstat for 6h_m3_t
+56650703 + 0 in total (QC-passed reads + QC-failed reads)
+5206037 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+41336747 + 0 mapped (72.97% : N/A)
+51444666 + 0 paired in sequencing
+25722333 + 0 read1
+25722333 + 0 read2
+28293884 + 0 properly paired (55.00% : N/A)
+32750834 + 0 with itself and mate mapped
+3379876 + 0 singletons (6.57% : N/A)
+4219176 + 0 with mate mapped to a different chr
+3579665 + 0 with mate mapped to a different chr (mapQ>=5)
+flagstat for 6h_m3_u
+50172651 + 0 in total (QC-passed reads + QC-failed reads)
+5088087 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+39233744 + 0 mapped (78.20% : N/A)
+45084564 + 0 paired in sequencing
+22542282 + 0 read1
+22542282 + 0 read2
+27623398 + 0 properly paired (61.27% : N/A)
+31470360 + 0 with itself and mate mapped
+2675297 + 0 singletons (5.93% : N/A)
+3598668 + 0 with mate mapped to a different chr
+2979009 + 0 with mate mapped to a different chr (mapQ>=5)
