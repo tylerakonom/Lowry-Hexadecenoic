@@ -1,0 +1,69 @@
+---
+title: "DESeq2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+require("knitr")
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\")
+library(dplyr)
+library(DESeq2)
+library(ggplot2)
+library(magrittr)
+```
+
+
+#Load counts and sample info
+```{r}
+counts = read.table("refcounts.txt", header=TRUE, row.names=1, sep="\t")
+coldata = read.table("coldata.txt", header=TRUE, sep="\t")
+coldata$time <- factor(coldata$time, levels = c("1hr", "6hr"))
+coldata$mouse <- factor(coldata$mouse)
+coldata$treatment <- factor(coldata$treatment, levels = c("untreated", "treated"))
+coldata$treatmenttime <- factor(paste(coldata$treatment, coldata$time, sep = "_"), levels = c("untreated_1hr", "treated_1hr", "untreated_6hr", "treated_6hr"))
+counts['Length'] = NULL
+```
+
+
+# Generating New Results:
+```{r}
+#Designate File Output
+setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\treatmenttime\\")
+
+dds = DESeqDataSetFromMatrix(countData = counts, colData = coldata, design = ~  mouse + treatmenttime)
+
+#perform normalization, dispersion estimate, and statistical tests
+dds = DESeq(dds)
+
+# plot dispersion estimates
+png(filename = "treatmenttime_dispersion_plot.png", width = 12, height = 12, units = "in", res = 800, bg= "white")
+plotDispEsts(dds)
+dev.off()
+
+# Checking individual genes
+png(filename = "C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\treatmenttime\\Il6_plotcounts.png", width = 12, height = 12, units = "in", res = 800, bg= "white")
+plotCounts(dds, gene = "Il6", intgroup = "treatmenttime")
+dev.off()
+
+
+# Writing out results
+setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\treatmenttime\\")
+res <- results(dds, contrast = c("treatmenttime", "treated_6hr", "untreated_6hr"))
+write.csv(as.data.frame(res), file="6hr_treatmenttime_results.csv")
+
+setwd("C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\treatmenttime\\")
+res1hr <- results(dds, contrast = c("treatmenttime", "treated_1hr", "untreated_1hr"))
+write.csv(as.data.frame(res1hr), file="1hr_treatmenttime_results.csv")
+
+
+#plot fold changes with 2 fold blue line added, alpha is FDR cutoff, change to whatever cutoff you want
+png(filename = "C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\treatmenttime\\treatmenttime_MAPlot.png", width = 12, height = 12, units = "in", res = 800, bg= "white")
+DESeq2::plotMA(res, alpha = 0.01, ylim=c(-3,3), cex=.4)
+abline(h=c(-1,1), col="dodgerblue", lwd=2)
+dev.off()
+
+plotCounts(dds,gene="Ccl2",intgroup="treatment")
+normed[rownames(normed)=="Il6",]
+barplot(normed[rownames(normed)=="Ccl2",])
+```
