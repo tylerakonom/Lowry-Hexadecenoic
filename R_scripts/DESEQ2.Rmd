@@ -126,6 +126,9 @@ DESeq2::plotMA(res, alpha = 0.01, ylim=c(-3,3), cex=.4)
 abline(h=c(-1,1), col="dodgerblue", lwd=2)
 dev.off()
 
+plotCounts(dds,gene="Ccl2",intgroup="treatment")
+normed[rownames(normed)=="Il6",]
+barplot(normed[rownames(normed)=="Ccl2",])
 ```
 
 # 1hr Treatment Group -----------------------------------------------------------------------------------------------------------------------------------
