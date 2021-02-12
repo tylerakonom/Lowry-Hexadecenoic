@@ -13,3 +13,4 @@ genome/fixedgenes.gtf
 genome/genes.gtf
 reads/mm10.ncbiRefSeq.gtf
 reads/sorted/fixedgenes.bed
+.DS_Store
