@@ -57,6 +57,8 @@ res1hr <- results(dds, contrast = c("treatmenttime", "treated_1hr", "untreated_1
 write.csv(as.data.frame(res1hr), file="1hr_treatmenttime_results.csv")
 
 
+resSig <- subset(res, padj < 0.05)
+
 #plot fold changes with 2 fold blue line added, alpha is FDR cutoff, change to whatever cutoff you want
 png(filename = "C:\\GitHub\\Lowry-Hexadecenoic\\deseq_outputs\\treatmenttime\\treatmenttime_MAPlot.png", width = 12, height = 12, units = "in", res = 800, bg= "white")
 DESeq2::plotMA(res, alpha = 0.01, ylim=c(-3,3), cex=.4)
